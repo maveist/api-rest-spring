@@ -6,11 +6,13 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import repository.SkillRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by mmaheo on 09/03/2017.
@@ -27,13 +29,22 @@ public class SkillController extends WebMvcConfigurerAdapter {
         registry.addViewController("/results").setViewName("results");
     }
 
+    @GetMapping("/skills")
+    public ModelAndView retrieve() {
+        List<Skill> skills = repository.findAll();
+        ModelAndView model = new ModelAndView("skills");
+        model.addObject("skills", skills);
+
+        return model;
+    }
+
     @GetMapping("/add/skill")
     public String showForm(Skill skill) {
         return "form";
     }
 
     @PostMapping("/")
-    public String checkPersonInfo(@Valid Skill skill, BindingResult bindingResult) {
+    public String checkSkill(@Valid Skill skill, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "form";

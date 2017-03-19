@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    <tr th:each="skill: ${skills}">
+        <td th:text="${skill.name}">Name</td>
+    </tr>
+</table>
+</body>
+</html>
