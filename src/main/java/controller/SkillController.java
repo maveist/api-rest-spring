@@ -24,15 +24,10 @@ public class SkillController extends WebMvcConfigurerAdapter {
     @Autowired
     private SkillRepository repository;
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/results").setViewName("results");
-    }
-
     @GetMapping("/skills")
     public ModelAndView retrieve() {
         List<Skill> skills = repository.findAll();
-        ModelAndView model = new ModelAndView("skills");
+        ModelAndView model = new ModelAndView("skill/index");
         model.addObject("skills", skills);
 
         return model;
@@ -40,19 +35,19 @@ public class SkillController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/add/skill")
     public String showForm(Skill skill) {
-        return "form";
+        return "skill/create";
     }
 
     @PostMapping("/")
     public String checkSkill(@Valid Skill skill, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "form";
+            return "skill/create";
         }
 
         repository.save(new Skill(skill.getName()));
 
-        return "redirect:/results";
+        return "redirect:/skills";
     }
 
 }
