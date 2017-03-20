@@ -27,10 +27,22 @@
     <div class="col-md-10 col-md-offset-1">
         <table class="table table-responsive table-bordered">
             <tr>
-                <th>Name</th>
+                <th class="text-center">Nom</th>
+                <th class="text-center">Editer</th>
+                <th class="text-center">Supprimer</th>
             </tr>
-            <tr th:each="skill: ${skills}">
+            <tr th:each="skill: ${skills}" class="text-center">
                 <td th:text="${skill.name}">Name</td>
+                <td>
+                    <a href="#" class="btn btn-success">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                </td>
             </tr>
         </table>
     </div>

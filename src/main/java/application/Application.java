@@ -17,6 +17,7 @@ public class Application extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/css/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("classpath:/fonts/");
         registry.addResourceHandler("/js/**").addResourceLocations("classpath:/js/");
     }
 
