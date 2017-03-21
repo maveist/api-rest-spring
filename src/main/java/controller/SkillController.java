@@ -18,13 +18,14 @@ import java.util.List;
  * Created by mmaheo on 09/03/2017.
  */
 @Controller
+@RequestMapping("/skills")
 @EnableMongoRepositories("repository")
 public class SkillController extends WebMvcConfigurerAdapter {
 
     @Autowired
     private SkillRepository repository;
 
-    @GetMapping("/skills")
+    @GetMapping("/")
     public ModelAndView retrieve() {
         List<Skill> skills = repository.findAll();
         ModelAndView model = new ModelAndView("skill/index");
@@ -33,9 +34,18 @@ public class SkillController extends WebMvcConfigurerAdapter {
         return model;
     }
 
-    @GetMapping("/add/skill")
+    @GetMapping("/add")
     public String showForm(Skill skill) {
         return "skill/create";
+    }
+
+    @RequestMapping("/{id}")
+    public @ResponseBody ModelAndView showDetails(@PathVariable(value="id") String id) {
+        Skill skill = repository.findOne(id);
+        ModelAndView model = new ModelAndView("skill/details_skills");
+        model.addObject("skill", skill);
+        model.addObject("ressources", skill.getRessources());
+        return model;
     }
 
     @PostMapping("/")

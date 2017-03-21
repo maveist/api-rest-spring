@@ -34,7 +34,7 @@
             <tr th:each="skill: ${skills}" class="text-center">
                 <td th:text="${skill.name}">Name</td>
                 <td>
-                    <a href="#" class="btn btn-success">
+                    <a th:href="'/skills/'+${skill.id}" class="btn btn-success">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </a>
                 </td>
