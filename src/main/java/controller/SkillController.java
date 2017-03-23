@@ -83,7 +83,7 @@ public class SkillController extends WebMvcConfigurerAdapter {
     }
 
     @PostMapping("")
-    @RequestMapping("/delete/{id}")
+    @RequestMapping("/{id}/delete")
     public
     String delete(@PathVariable(value = "id") String id) {
         if (repository.exists(id)) {

@@ -56,7 +56,32 @@ public class WorkerController extends WebMvcConfigurerAdapter {
         return new ModelAndView("error/404");
     }
 
-    @RequestMapping("/delete/{id}")
+    @RequestMapping("/{id}/edit")
+    public
+    @ResponseBody
+    ModelAndView edit(@PathVariable(value = "id") String id){
+        Worker worker = repository.findOne(id);
+        ModelAndView model = new ModelAndView("worker/edit");
+        if(worker != null){
+            model.addObject("worker", worker);
+            return model;
+        }
+
+        return new ModelAndView("error/404");
+
+    }
+
+    @PostMapping("/{id}")
+    public String update(@PathVariable(value = "id") String id, @Valid Worker worker){
+        Worker oldWorker = repository.findOne(id);
+        oldWorker.setFirstName(worker.getFirstName());
+        oldWorker.setLastName(worker.getLastName());
+        repository.save(oldWorker);
+
+        return "redirect:/workers";
+    }
+
+    @RequestMapping("/{id}/delete")
     public
     String delete(@PathVariable(value = "id") String id) {
         if (repository.exists(id)) {
