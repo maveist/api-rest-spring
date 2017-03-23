@@ -57,13 +57,12 @@ public class SkillController extends WebMvcConfigurerAdapter {
         return new ModelAndView("error/404");
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     public String checkSkill(@Valid Skill skill, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "skill/create";
         }
-
         repository.save(new Skill(skill.getName()));
 
         return "redirect:/skills";

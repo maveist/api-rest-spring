@@ -1,16 +1,41 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Détails de compétence</title>
-</head>
-<body>
-<h1 th:text="${skill.name}">${skill.name}</h1>
-<ul>
-    <li th:text="${skill.name}" > </li>
-</ul>
-<h3>Ressources web:</h3>
-<p th:text="${ressources}"></p>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
+    <title>Détails de compétence</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+
+<body class="container">
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">
+            Détails de compétence
+        </h1>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 th:text="${skill.name}" class="text-center">${skill.name}</h1>
+        <ul>
+            <li th:text="${skill.name}"></li>
+        </ul>
+        <h3>Ressources web:</h3>
+        <p th:text="${ressources}"></p>
+    </div>
+</div>
+
+<script src="/js/jquery-3.2.0.min.js" th:href="@{/js/jquery-3.2.0.min.js}" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}" type="text/javascript"></script>
 </body>
+
 </html>
