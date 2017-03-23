@@ -38,6 +38,11 @@ public class SkillController extends WebMvcConfigurerAdapter {
         return "skill/create";
     }
 
+    @GetMapping("/")
+    public String redirect(){
+        return "redirect:/skills";
+    }
+
     @PostMapping("/")
     public String checkSkill(@Valid Skill skill, BindingResult bindingResult) {
 
