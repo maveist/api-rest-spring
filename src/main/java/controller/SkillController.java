@@ -65,7 +65,7 @@ public class SkillController extends WebMvcConfigurerAdapter {
         Skill skill = repository.findOne(id);
         ModelAndView model = new ModelAndView("skill/edit");
         if(skill != null){
-            model.addObject("skill_input", skill);
+            model.addObject("skill", skill);
             return model;
         }
 
@@ -74,10 +74,12 @@ public class SkillController extends WebMvcConfigurerAdapter {
     }
 
     @PostMapping("/{id}")
-    public void updateSkill(@PathVariable(value = "id") String id, @Valid Skill skill){
+    public String updateSkill(@PathVariable(value = "id") String id, @Valid Skill skill){
         Skill oldSkill = repository.findOne(id);
         oldSkill.setName(skill.getName());
         repository.save(oldSkill);
+
+        return "redirect:/skills";
     }
 
     @PostMapping("")
