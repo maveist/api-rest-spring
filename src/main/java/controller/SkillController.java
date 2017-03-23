@@ -46,6 +46,11 @@ public class SkillController extends WebMvcConfigurerAdapter {
         model.addObject("skill", skill);
         model.addObject("ressources", skill.getRessources());
         return model;
+
+    @GetMapping("/")
+    public String redirect(){
+        return "redirect:/skills";
+
     }
 
     @PostMapping("/")
