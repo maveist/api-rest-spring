@@ -12,7 +12,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/ressources" type="java-resource" />
+<<<<<<< HEAD
       <excludeFolder url="file://$MODULE_DIR$/target" />
+=======
+      <excludeFolder url="file://$MODULE_DIR$/target/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
+      <excludeFolder url="file://$MODULE_DIR$/target/maven-status" />
+>>>>>>> ea059ff47531190df788c0e9fad31b4a6151fc43
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

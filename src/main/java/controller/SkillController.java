@@ -3,6 +3,7 @@ package controller;
 import model.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ResourceNotFoundException;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class SkillController extends WebMvcConfigurerAdapter {
 
     @GetMapping("")
     public ModelAndView retrieve() {
-        List<Skill> skills = repository.findAll();
+        List<Skill> skills = repository.findAll(new Sort(Sort.Direction.ASC, "name"));
         ModelAndView model = new ModelAndView("skill/index");
         model.addObject("skills", skills);
 
@@ -46,7 +47,7 @@ public class SkillController extends WebMvcConfigurerAdapter {
     @ResponseBody
     ModelAndView showDetails(@PathVariable(value = "id") String id) {
         Skill skill = repository.findOne(id);
-        ModelAndView model = new ModelAndView("skill/details_skills");
+        ModelAndView model = new ModelAndView("skill/details");
 
         if (skill != null) {
             model.addObject("skill", skill);
@@ -57,7 +58,42 @@ public class SkillController extends WebMvcConfigurerAdapter {
         return new ModelAndView("error/404");
     }
 
+    @RequestMapping("/{id}/edit")
+    public
+    @ResponseBody
+    ModelAndView editSkill(@PathVariable(value = "id") String id){
+        Skill skill = repository.findOne(id);
+        ModelAndView model = new ModelAndView("skill/edit");
+        if(skill != null){
+            model.addObject("skill", skill);
+            return model;
+        }
+
+        return new ModelAndView("error/404");
+
+    }
+
+    @PostMapping("/{id}")
+    public String updateSkill(@PathVariable(value = "id") String id, @Valid Skill skill){
+        Skill oldSkill = repository.findOne(id);
+        oldSkill.setName(skill.getName());
+        repository.save(oldSkill);
+
+        return "redirect:/skills";
+    }
+
     @PostMapping("")
+    @RequestMapping("/{id}/delete")
+    public
+    String delete(@PathVariable(value = "id") String id) {
+        if (repository.exists(id)) {
+            repository.delete(id);
+        }
+
+        return "redirect:/skills";
+    }
+
+    @PostMapping("/")
     public String checkSkill(@Valid Skill skill, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

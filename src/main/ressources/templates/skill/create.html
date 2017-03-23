@@ -1,16 +1,45 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<body>
-<form action="#" th:action="@{/}" th:object="${skill}" method="post">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" th:field="*{name}" /></td>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
-        </tr>
-        <tr>
-            <td><button type="submit">Submit</button></td>
-        </tr>
-    </table>
-</form>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Créer une compétence</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+
+<body class="container">
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">
+            Créer une compétence
+        </h1>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="#" th:action="@{/skills/}" th:object="${skill}" method="post">
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" />
+                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Créer</button>
+        </form>
+    </div>
+</div>
+
+<script src="/js/jquery-3.2.0.min.js" th:href="@{/js/jquery-3.2.0.min.js}" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}" type="text/javascript"></script>
 </body>
+
 </html>

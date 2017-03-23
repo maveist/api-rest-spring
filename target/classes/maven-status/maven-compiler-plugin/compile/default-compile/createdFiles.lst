@@ -1,0 +1,4 @@
+controller\SkillController.class
+model\Skill.class
+application\Application.class
+repository\SkillRepository.class
