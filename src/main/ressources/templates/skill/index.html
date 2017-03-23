@@ -32,7 +32,11 @@
                 <th class="text-center">Supprimer</th>
             </tr>
             <tr th:each="skill: ${skills}" class="text-center">
-                <td th:text="${skill.name}">Name</td>
+                <td>
+                    <a th:text="${skill.name}" th:href="'/skills/'+${skill.id}">
+                        Name
+                    </a>
+                </td>
                 <td>
                     <a th:href="'/skills/'+${skill.id}" class="btn btn-success">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

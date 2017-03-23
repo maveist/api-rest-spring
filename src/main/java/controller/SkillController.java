@@ -2,12 +2,14 @@ package controller;
 
 import model.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ResourceNotFoundException;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import repository.SkillRepository;
 
@@ -25,7 +27,7 @@ public class SkillController extends WebMvcConfigurerAdapter {
     @Autowired
     private SkillRepository repository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ModelAndView retrieve() {
         List<Skill> skills = repository.findAll();
         ModelAndView model = new ModelAndView("skill/index");
@@ -40,20 +42,22 @@ public class SkillController extends WebMvcConfigurerAdapter {
     }
 
     @RequestMapping("/{id}")
-    public @ResponseBody ModelAndView showDetails(@PathVariable(value="id") String id) {
+    public
+    @ResponseBody
+    ModelAndView showDetails(@PathVariable(value = "id") String id) {
         Skill skill = repository.findOne(id);
         ModelAndView model = new ModelAndView("skill/details_skills");
-        model.addObject("skill", skill);
-        model.addObject("ressources", skill.getRessources());
-        return model;
 
-    @GetMapping("/")
-    public String redirect(){
-        return "redirect:/skills";
+        if (skill != null) {
+            model.addObject("skill", skill);
+            model.addObject("ressources", skill.getRessources());
+            return model;
+        }
 
+        return new ModelAndView("error/404");
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public String checkSkill(@Valid Skill skill, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
