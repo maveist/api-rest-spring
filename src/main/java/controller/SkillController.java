@@ -57,6 +57,16 @@ public class SkillController extends WebMvcConfigurerAdapter {
         return new ModelAndView("error/404");
     }
 
+    @RequestMapping("/delete/{id}")
+    public
+    String delete(@PathVariable(value = "id") String id) {
+        if (repository.exists(id)) {
+            repository.delete(id);
+        }
+
+        return "redirect:/skills";
+    }
+
     @PostMapping("/")
     public String checkSkill(@Valid Skill skill, BindingResult bindingResult) {
 
