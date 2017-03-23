@@ -6,7 +6,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Projet</title>
+    <title>Liste des collaborateurs</title>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-md-12">
         <h1 class="text-center">
-            Liste des compétences
+            Liste des collaborateurs
         </h1>
     </div>
 </div>
@@ -27,23 +27,29 @@
     <div class="col-md-10 col-md-offset-1">
         <table class="table table-responsive table-bordered">
             <tr>
-                <th class="text-center">Nom</th>
+                <th class="text-center">FirstName</th>
+                <th class="text-center">LastName</th>
                 <th class="text-center">Editer</th>
                 <th class="text-center">Supprimer</th>
             </tr>
-            <tr th:each="skill: ${skills}" class="text-center">
+            <tr th:each="worker: ${workers}" class="text-center">
                 <td>
-                    <a th:text="${skill.name}" th:href="'/skills/'+${skill.id}">
+                    <a th:text="${worker.firstName}" th:href="'/workers/'+${worker.id}">
                         Name
                     </a>
                 </td>
                 <td>
-                    <a th:href="'/skills/'+${skill.id}+'/edit'" class="btn btn-success">
+                    <a th:text="${worker.lastName}" th:href="'/workers/'+${worker.id}">
+                        Name
+                    </a>
+                </td>
+                <td>
+                    <a th:href="'/workers/'+${worker.id}+'/edit'" class="btn btn-success">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </a>
                 </td>
                 <td>
-                    <a th:href="'/skills/'+${skill.id}+'/delete'" class="btn btn-danger">
+                    <a th:href="'/workers/'+${worker.id}+'/delete'" class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
                 </td>

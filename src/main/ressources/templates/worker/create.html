@@ -6,7 +6,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Créer une compétence</title>
+    <title>Créer un collaborateur</title>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-md-12">
         <h1 class="text-center">
-            Créer une compétence
+            Créer un collaborateur
         </h1>
     </div>
 </div>
@@ -25,12 +25,18 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form action="#" th:action="@{/skills/}" th:object="${skill}" method="post">
+        <form action="#" th:action="@{/workers/}" th:object="${worker}" method="post">
 
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" th:field="*{name}" class="form-control" id="name" />
-                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
+                <label for="firstName">FirstName</label>
+                <input type="text" th:field="*{firstName}" class="form-control" id="firstName" />
+                <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FirstName Error</label>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">FirstName</label>
+                <input type="text" th:field="*{lastName}" class="form-control" id="lastName" />
+                <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</label>
             </div>
 
             <button type="submit" class="btn btn-primary">Créer</button>

@@ -6,7 +6,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Créer une compétence</title>
+    <title>Détails d'un collaborateur</title>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-md-12">
         <h1 class="text-center">
-            Créer une compétence
+            Détails d'un collaborateur
         </h1>
     </div>
 </div>
@@ -25,16 +25,12 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form action="#" th:action="@{/skills/}" th:object="${skill}" method="post">
-
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" th:field="*{name}" class="form-control" id="name" />
-                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Créer</button>
-        </form>
+        <p>
+            <em>FirstName : </em><i th:text="${worker.firstName}"></i>
+        </p>
+        <p>
+            <em>LastName : </em><i th:text="${worker.lastName}"></i>
+        </p>
     </div>
 </div>
 
