@@ -3,6 +3,7 @@ package controller;
 import model.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ResourceNotFoundException;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class SkillController extends WebMvcConfigurerAdapter {
 
     @GetMapping("")
     public ModelAndView retrieve() {
-        List<Skill> skills = repository.findAll();
+        List<Skill> skills = repository.findAll(new Sort(Sort.Direction.ASC, "name"));
         ModelAndView model = new ModelAndView("skill/index");
         model.addObject("skills", skills);
 
