@@ -63,7 +63,7 @@ public class SkillController extends WebMvcConfigurerAdapter {
     @ResponseBody
     ModelAndView editSkill(@PathVariable(value = "id") String id){
         Skill skill = repository.findOne(id);
-        ModelAndView model = new ModelAndView("skill/edit_skill");
+        ModelAndView model = new ModelAndView("skill/edit");
         if(skill != null){
             model.addObject("skill_input", skill);
             return model;
