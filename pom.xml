@@ -83,6 +83,7 @@
     </repositories>
 
     <pluginRepositories>
+
         <pluginRepository>
             <id>spring-releases</id>
             <name>Spring Releases</name>
