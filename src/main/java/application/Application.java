@@ -33,6 +33,10 @@ public class Application extends WebMvcConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-            .withUser("user").password("password").roles("USER");
+            .withUser("louis").password("louis").roles("USER").and()
+            .withUser("bastien").password("bastien").roles("USER").and()
+            .withUser("selim").password("selim").roles("USER").and()
+            .withUser("leo").password("leo").roles("USER").and()
+            .withUser("maxime").password("maxime").roles("USER");
     }
 }
